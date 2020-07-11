@@ -1,0 +1,17 @@
+[package]
+name = "tmx_model"
+version = "0.1.0"
+authors = ["tasogare3710 <tasogare.android@gmail.com>"]
+edition = "2018"
+
+[dependencies.anyhow]
+version = "=1.0.31"
+
+[dependencies.thiserror]
+version = "=1.0.19"
+
+[dependencies.serde]
+version = "=1.0.111"
+
+[dependencies.serde_derive]
+version = "=1.0.111"
