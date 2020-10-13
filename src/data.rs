@@ -21,7 +21,7 @@ pub enum Compression {
     Zstd,
 }
 
-impl Default for Compression{
+impl Default for Compression {
     fn default() -> Self {
         Self::None
     }

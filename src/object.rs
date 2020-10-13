@@ -1,5 +1,8 @@
 //Copyright (c) 2020 - , zen-chromeless-platform All rights reserved.
-use ::{std::ops::{Deref, DerefMut}, serde::{Deserialize, Serialize}};
+use ::{
+    serde::{Deserialize, Serialize},
+    std::ops::{Deref, DerefMut},
+};
 
 #[derive(Deserialize, Serialize)]
 pub struct Object {
@@ -16,6 +19,26 @@ pub struct Object {
     pub shape: Shape,
     pub template: Option<crate::template::Template>,
     pub properties: Option<crate::properties::Properties>,
+}
+
+impl Object {
+    pub fn new(id: crate::ObjectId) -> Self {
+        Self {
+            id,
+            visible: true,
+            shape: Shape::Rectangle,
+            name: Default::default(),
+            r#type: Default::default(),
+            x: Default::default(),
+            y: Default::default(),
+            width: Default::default(),
+            height: Default::default(),
+            rotation: Default::default(),
+            gid: Default::default(),
+            template: Default::default(),
+            properties: Default::default(),
+        }
+    }
 }
 
 #[derive(Deserialize, Serialize)]
@@ -37,7 +60,7 @@ impl From<Vec<(f64, f64)>> for Points {
     }
 }
 
-impl Points{
+impl Points {
     pub fn new() -> Self {
         Self::from(Vec::new())
     }
@@ -73,9 +96,9 @@ pub struct Text {
     pub wrap: bool,
 }
 
-impl Default for Text{
+impl Default for Text {
     fn default() -> Self {
-        Self{
+        Self {
             font_family: "sans-serif".to_owned(),
             pixel_size: 16,
             color: "#000000".to_owned(),
@@ -86,7 +109,7 @@ impl Default for Text{
 }
 
 impl Text {
-    pub fn new() -> Self{
+    pub fn new() -> Self {
         Self::default()
     }
 }
