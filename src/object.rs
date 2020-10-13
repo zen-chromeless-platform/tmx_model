@@ -31,6 +31,18 @@ pub enum Shape {
 #[derive(Deserialize, Serialize)]
 pub struct Points(Vec<(f64, f64)>);
 
+impl From<Vec<(f64, f64)>> for Points {
+    fn from(inner: Vec<(f64, f64)>) -> Self {
+        Self(inner)
+    }
+}
+
+impl Points{
+    pub fn new() -> Self {
+        Self::from(Vec::new())
+    }
+}
+
 impl Deref for Points {
     type Target = [(f64, f64)];
 
@@ -59,6 +71,24 @@ pub struct Text {
     pub underline: bool,
     pub v_align: VerticalAlignment,
     pub wrap: bool,
+}
+
+impl Default for Text{
+    fn default() -> Self {
+        Self{
+            font_family: "sans-serif".to_owned(),
+            pixel_size: 16,
+            color: "#000000".to_owned(),
+            kerning: true,
+            ..Default::default()
+        }
+    }
+}
+
+impl Text {
+    pub fn new() -> Self{
+        Self::default()
+    }
 }
 
 #[derive(Deserialize, Serialize)]
