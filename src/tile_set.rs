@@ -133,13 +133,43 @@ pub struct WangTile {
     pub v_flip: bool,
 }
 
+impl WangTile {
+    pub fn new(tile_id: crate::LocalTileId, wang_id: WangId) -> Self {
+        Self {
+            tile_id,
+            wang_id,
+            d_flip: Default::default(),
+            h_flip: Default::default(),
+            v_flip: Default::default(),
+        }
+    }
+}
+
 #[derive(Deserialize, Serialize)]
 pub struct WangId([u8; 8]);
+
+impl From<[u8; 8]> for WangId {
+    fn from(inner: [u8; 8]) -> Self {
+        Self(inner)
+    }
+}
+
+impl WangId {
+    pub fn new(ids: [u8; 8]) -> Self {
+        Self::from(ids)
+    }
+}
 
 impl std::ops::Deref for WangId {
     type Target = [u8; 8];
 
     fn deref(&self) -> &Self::Target {
         &self.0
+    }
+}
+
+impl std::ops::DerefMut for WangId {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
     }
 }
