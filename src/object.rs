@@ -1,5 +1,5 @@
 //Copyright (c) 2020 - , zen-chromeless-platform All rights reserved.
-use serde::{Deserialize, Serialize};
+use ::{std::ops::{Deref, DerefMut}, serde::{Deserialize, Serialize}};
 
 #[derive(Deserialize, Serialize)]
 pub struct Object {
@@ -23,26 +23,42 @@ pub enum Shape {
     Rectangle,
     Ellipse,
     Point,
-    Polygon {
-        points: Vec<(f64, f64)>,
-    },
-    PolyLine {
-        points: Vec<(f64, f64)>,
-    },
-    Text {
-        font_family: String,
-        pixel_size: i64,
-        bold: bool,
-        color: String,
-        h_align: HorizontalAlignment,
-        italic: bool,
-        kerning: bool,
-        strikeout: bool,
-        text: String,
-        underline: bool,
-        v_align: VerticalAlignment,
-        wrap: bool,
-    },
+    Polygon(Points),
+    PolyLine(Points),
+    Text(Text),
+}
+
+#[derive(Deserialize, Serialize)]
+pub struct Points(Vec<(f64, f64)>);
+
+impl Deref for Points {
+    type Target = [(f64, f64)];
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
+impl DerefMut for Points {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.0
+    }
+}
+
+#[derive(Deserialize, Serialize)]
+pub struct Text {
+    pub font_family: String,
+    pub pixel_size: i64,
+    pub bold: bool,
+    pub color: String,
+    pub h_align: HorizontalAlignment,
+    pub italic: bool,
+    pub kerning: bool,
+    pub strikeout: bool,
+    pub text: String,
+    pub underline: bool,
+    pub v_align: VerticalAlignment,
+    pub wrap: bool,
 }
 
 #[derive(Deserialize, Serialize)]
