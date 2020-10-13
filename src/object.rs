@@ -11,7 +11,7 @@ pub struct Object {
     pub width: f64,
     pub height: f64,
     pub rotation: f64,
-    pub gid: crate::GlobalTileId,
+    pub gid: Option<crate::GlobalTileId>,
     pub visible: bool,
     pub shape: Shape,
     pub template: Option<crate::template::Template>,
