@@ -46,6 +46,12 @@ pub enum RenderOrder {
     LeftUp,
 }
 
+impl Default for RenderOrder {
+    fn default() -> Self {
+        Self::RightDown
+    }
+}
+
 #[derive(Deserialize, Serialize)]
 pub enum StaggerAxis {
     X,
