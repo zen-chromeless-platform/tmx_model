@@ -11,7 +11,7 @@ pub mod properties;
 pub mod template;
 pub mod tile_set;
 
-use serde_derive::{Deserialize, Serialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize, Serialize)]
 pub struct ObjectId(i64);
