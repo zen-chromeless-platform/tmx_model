@@ -1,5 +1,5 @@
 //Copyright (c) 2020 - , zen-chromeless-platform All rights reserved.
-//! currently only supported Tiled 1.4
+//! only supported Tiled 1.7
 
 pub mod chunk;
 pub mod data;

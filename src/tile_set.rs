@@ -20,10 +20,12 @@ pub struct TileSet {
     pub image_width: i64,
     pub background_color: Option<String>,
     pub transparent_color: Option<String>,
+    pub transformations: Transformations,
     pub grid: Option<Grid>,
     /// XXX: `terraintypes`を省略してよいか？
     pub terrains: Option<Vec<Terrain>>,
     pub wang_sets: Option<Vec<WangSet>>,
+    pub version: String,
     pub properties: Option<crate::properties::Properties>,
 }
 
@@ -107,10 +109,8 @@ pub struct Terrain {
 pub struct WangSet {
     pub name: String,
     pub tile: crate::LocalTileId,
-    /// TODO: Can contain up to 15
-    pub corner_colors: Vec<WangColor>,
-    /// TODO:  Can contain up to 15
-    pub edge_colors: Vec<WangColor>,
+    /// TODO: Can contain up to 255
+    pub colors: Vec<WangColor>,
     pub wang_tiles: Vec<WangTile>,
     pub properties: Option<crate::properties::Properties>,
 }
@@ -128,9 +128,6 @@ pub struct WangColor {
 pub struct WangTile {
     pub tile_id: crate::LocalTileId,
     pub wang_id: WangId,
-    pub d_flip: bool,
-    pub h_flip: bool,
-    pub v_flip: bool,
 }
 
 impl WangTile {
@@ -138,9 +135,6 @@ impl WangTile {
         Self {
             tile_id,
             wang_id,
-            d_flip: Default::default(),
-            h_flip: Default::default(),
-            v_flip: Default::default(),
         }
     }
 }
@@ -172,4 +166,12 @@ impl std::ops::DerefMut for WangId {
     fn deref_mut(&mut self) -> &mut Self::Target {
         &mut self.0
     }
+}
+
+#[derive(Default, Deserialize, Serialize)]
+pub struct Transformations {
+    pub hflip: 	bool 	,
+    pub vflip: 	bool 	,
+    pub rotate: 	bool ,
+    pub preferuntransformed: 	bool,
 }
