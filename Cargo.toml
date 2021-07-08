@@ -5,5 +5,5 @@ authors = ["tasogare3710 <tasogare.android@gmail.com>"]
 edition = "2018"
 
 [dependencies.serde]
-version = "=1.0.116"
+version = "=1.0.126"
 features = ["derive"]
