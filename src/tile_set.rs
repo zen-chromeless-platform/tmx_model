@@ -132,10 +132,7 @@ pub struct WangTile {
 
 impl WangTile {
     pub fn new(tile_id: crate::LocalTileId, wang_id: WangId) -> Self {
-        Self {
-            tile_id,
-            wang_id,
-        }
+        Self { tile_id, wang_id }
     }
 }
 
@@ -170,8 +167,8 @@ impl std::ops::DerefMut for WangId {
 
 #[derive(Default, Deserialize, Serialize)]
 pub struct Transformations {
-    pub hflip: 	bool 	,
-    pub vflip: 	bool 	,
-    pub rotate: 	bool ,
-    pub preferuntransformed: 	bool,
+    pub hflip: bool,
+    pub vflip: bool,
+    pub rotate: bool,
+    pub preferuntransformed: bool,
 }
